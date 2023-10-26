@@ -1,5 +1,5 @@
 import pygame, sys, math, random
-
+# Completed code made by Tyler D. Roche / u0759503
 # Test if two sprite masks overlap
 def pixel_collision(mask1, rect1, mask2, rect2):
     offset_x = rect2[0] - rect1[0]
@@ -34,18 +34,19 @@ class Enemy:
         self.image = image
         self.mask = pygame.mask.from_surface(image)
         self.rectangle = image.get_rect()
-
         # Add code to
         # 1. Set the rectangle center to a random x and y based
         #    on the screen width and height
+        self.x = random.randrange(width)
+        self.y = random.randrange(height)
         # 2. Set a speed instance variable that holds a tuple (vx, vy)
         #    which specifies how much the rectangle moves each time.
         #    vx means "velocity in x". Make the vx and vy random (with
         #    possible negative and positive values. Experiment so the 
         #    speeds are not too fast.
-
-
-
+        vx = random.randrange(-5, 5)
+        vy = random.randrange(-5, 5)
+        speed = (vx, vy)
     def move(self):
         print("need to implement move!")
         # Add code to move the rectangle instance variable in x by
@@ -53,7 +54,7 @@ class Enemy:
         # components of the speed instance variable tuple.
         # A useful method of rectangle is pygame's move_ip method.
         # Research how to use it for this task.
-
+        self.move_ip()
     def bounce(self, width, height):
         print("need to implement bounce!")
         # This method makes the enemy bounce off of the top/left/right/bottom
@@ -106,9 +107,10 @@ def main():
     enemy_sprites = []
     # Make some number of enemies that will bounce around the screen.
     # Make a new Enemy instance each loop and add it to enemy_sprites. 
-
+    'add a variable with a random number, then loop and make that enemies. format like: enemies = random.randrange(10)'
     # This is the character you control. Choose your image.
-    player_image = pygame.image.load("JeffA5.png").convert_alpha()
+    player = pygame.image.load("JeffA5.png").convert_alpha()
+    player_image = pygame.transform.smoothscale(player, (50, 50))
     player_sprite = Sprite(player_image)
     life = 3
 
@@ -167,6 +169,9 @@ def main():
         life_banner = myfont.render(text, True, (255, 255, 0))
         screen.blit(life_banner, (20, 20))
 
+        'SPECIAL ADDITION: SCORE COUNTER:'
+
+        'END OF SPECIAL SECTION'
         # Bring all the changes to the screen into view
         pygame.display.update()
         # Pause for a few milliseconds
